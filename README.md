@@ -4,8 +4,7 @@ A 10-inch mini rack that consolidates a 3-node home fleet — dev workstation
 with dual GPUs, an AI inference server, and a general-purpose server host —
 plus its network gear, into one enclosure.
 
-![rack photo placeholder](docs/photos/rack-front.jpg)
-<!-- TODO: drop in real build photos under docs/photos/ -->
+![The rack, front view — Mac mini and UX7 gateway on top, riser card and MikroTik switch, patch panel and cable brush, PSU and vertically-mounted GPU/motherboard below](docs/photos/rack-front.jpg)
 
 ## Fleet
 
@@ -84,6 +83,6 @@ wiki/           Obsidian-compatible knowledge layer for this project
 
 - [x] Physical build complete
 - [x] Parts + pricing documented
-- [ ] Build photos added (`docs/photos/`)
+- [x] Build photos added (`docs/photos/`)
 - [ ] Rack elevation / wiring diagram
 - [ ] `scripts/` — no automation defined yet
