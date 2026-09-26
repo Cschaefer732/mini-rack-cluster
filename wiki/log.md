@@ -13,3 +13,9 @@ prices, and web research for MSRP/current market on major components.
 
 ## [2026-09-26] ingest | LinkedIn Post
 Draft written to docs/LINKEDIN_POST.md, technical-showcase angle per user choice.
+
+## [2026-09-26] ingest | Slide-out Tray CAD
+v0.1 parametric OpenSCAD model drafted: mobo (offset right), GPU bracket
+fin, PSU cradle, front rack ears, slide-rail mounting tabs. Caught and
+fixed an ear-orientation bug during first render. Flagged rack_clear_width
+and motherboard standoff holes as needing real measurement before print.

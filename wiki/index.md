@@ -8,3 +8,4 @@
 ## Topics
 - [Pricing](topics/pricing.md) — paid/MSRP vs current market, the appreciation finding
 - [LinkedIn Post](topics/linkedin-post.md) — post draft status + open blockers
+- [Slide-out Tray](topics/slide-out-tray.md) — v0.1 CAD draft, sourced vs. placeholder dimensions

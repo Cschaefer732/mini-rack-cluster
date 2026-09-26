@@ -75,6 +75,7 @@ outpaced normal depreciation on every reused part.
 ```
 docs/           build write-ups, LinkedIn post draft, photos
 configs/        network device summaries (port maps, gateway notes — no raw exports)
+cad/            parametric OpenSCAD model for the slide-out mobo/GPU/PSU tray
 scripts/        automation — TODO, none written yet
 wiki/           Obsidian-compatible knowledge layer for this project
 ```
@@ -84,5 +85,6 @@ wiki/           Obsidian-compatible knowledge layer for this project
 - [x] Physical build complete
 - [x] Parts + pricing documented
 - [x] Build photos added (`docs/photos/`)
+- [ ] Slide-out mobo/GPU/PSU tray — v0.1 CAD draft in `cad/`, needs rack-width measurement + dry-fit before printing
 - [ ] Rack elevation / wiring diagram
 - [ ] `scripts/` — no automation defined yet
