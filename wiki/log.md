@@ -38,3 +38,17 @@ mounting flanges confirmed. Found real PSU+2GPU stack needs ~384mm vs
 requested 8U (355.6mm) - flagged rather than silently shrinking sourced
 dimensions. Fixed a leftover nonsense algebra bug in the GPU cutout width
 expression caught during review before export.
+
+## [2026-09-26] ingest | Slide-out Tray CAD v0.4
+Corrected layout against docs/photos/rack-front.jpg after v0.3's guessed
+arrangement was wrong (PSU top-right vs actual top-left, solid blanked
+panels vs actual open bracket/shelf mounting). Sourced real Intel ATX
+Spec 2.01 mounting hole tables: PSU 4-hole pattern (genuinely universal,
+implemented directly) and motherboard 9-hole pattern (for a 305x244mm
+board, adapted/scaled for the X670E ACE's 277x304.8mm size - not
+verified against MSI's own drawing). Added a rack reference frame
+modeled at the Tecmojo 12U rack's real sourced dimensions. Caught and
+fixed a bug where the mobo panel was sized to a 130mm half-column but
+the holes were computed for the real 277mm board, landing most holes
+outside the visible panel - split into a front IO bezel + full-width
+standoff plate set back in depth.

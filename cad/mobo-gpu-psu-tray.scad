@@ -1,79 +1,109 @@
 // mobo-gpu-psu-tray.scad
 //
-// v0.3 — rebuilt around a "rear panel" model: this front face functions
-// like a standard PC case's rear panel (IO shield + PSU cutout + expansion
-// slot brackets), just facing the rack's front. Four tiled segments:
-//   - mobo segment (red):  left column, IO cutout, standoff zone
-//   - psu segment  (purple): top-right, PSU cutout + support shelf
-//   - gpu segment  (green): below PSU, 2 stacked card cutouts
-//   - structural   (blue): base plate, rack ears, spine rib, slide tabs
-// Mounts to purchased steel drawer slides (NOT printed rails).
+// v0.4 — corrected layout from the actual rack photo (not my earlier guess),
+// plus real sourced mounting holes for PSU and (adapted) motherboard, plus a
+// reference rack frame to check the fit against, per direct request.
 //
-// ============ VERIFY THESE BEFORE PRINTING ============
+// Layout (matches docs/photos/rack-front.jpg):
+//   top-left:     PSU, open bracket, exposed face, real ATX screw holes
+//   top-right:    motherboard IO shield + standoff plate (full height —
+//                 the board's own PCB runs behind/through the row below)
+//   bottom, full width: 2 GPUs side by side, open brackets, coolers
+//                 exposed, slot/connector end down
+//   center spine + outer flanges tie it together and screw into the rack
+//
+// ============ VERIFY THESE BEFORE PRINTING — see cad/README.md ============
 
-render_part = "all"; // "all" | "structural" | "mobo" | "gpu" | "psu"
+render_part = "all"; // "all" | "structural" | "mobo" | "gpu" | "psu" | "rack_reference"
 
-// --- Rack ---
-rack_clear_width  = 460;   // mm — INTERIOR clear width. PLACEHOLDER, MEASURE YOURS.
-                            // Bumped again this revision: left column (mobo, 277mm)
-                            // + spine + right column (PSU-width-driven, ~160mm) no
-                            // longer fits in the earlier 350mm placeholder.
-rack_usable_depth = 260;   // mm — front rail to back rail, from Tecmojo's 10.23in spec
-u_pitch           = 44.45; // mm — EIA-310 rack unit, standard, do not change
-tray_u_height     = 8;     // U's requested. See actual_panel_height below — real
-                            // component stack needs more; ears/panel are sized to
-                            // whichever is larger so nothing physically overlaps.
-hole_a            = 6.35;  // mm — EIA-310 hole positions within a U, standard
-hole_c            = 25.4;
+// --- Rack — Tecmojo 12U 10in (ASIN B0F4JWMY4T), sourced from mfr spec ---
+rack_overall_w       = 280;   // mm, sourced
+rack_overall_d       = 260;   // mm, sourced (10.23in)
+rack_overall_h       = 635.8; // mm, sourced (25.03in)
+rack_u_count         = 12;
+rack_rail_end_offset = 33;    // mm, sourced (1.3in, top/bottom to first usable U)
+rack_clear_width     = 270;   // mm — REASONED, not sourced: mfr diagram had an
+                                // uncaptioned 210mm figure the research agent flagged
+                                // as uncertain, and it contradicts the photo (a 277mm
+                                // board is visibly mounted). Using overall width minus
+                                // an assumed ~5mm rail wall each side instead. MEASURE
+                                // THE REAL ONE before printing — this is still a guess,
+                                // just a better-reasoned one.
+u_pitch    = 44.45; // mm — EIA-310, sourced (matches this rack's mfr-stated U pitch)
+hole_a     = 6.35;  // mm — EIA-310 intra-U hole positions. NOTE: confirmed as this
+hole_b     = 15.875; // rack's convention only by inference (10-32 tapped + cage-nut
+hole_c     = 25.4;  // kit strongly implies EIA-310, but not stated explicitly for this SKU)
 
-// --- Motherboard (MSI MEG X670E ACE — sourced from MSI/Micro Center specs) ---
-board_w = 277;
-board_d = 304.8;
-mount_plate_depth = 12; // mm, standoff/gusset depth placeholder
+tray_u_height = 8; // U's requested. See actual_panel_height below.
+
+// --- Motherboard (MSI MEG X670E ACE) ---
+board_w = 277;    // mm, sourced (MSI/Micro Center)
+board_d = 304.8;  // mm, sourced
+mount_plate_depth = 12; // mm placeholder, standoff/gusset depth
+
+// Standard ATX 9-hole mounting pattern, sourced from Intel ATX Spec 2.01
+// Fig. 3 (bitsavers.org), for a 305x244mm board, hole positions in inches
+// from the board's top-left corner (X right, Y down):
+atx_std_w_in = 12.0;
+atx_holes_in = [
+    [0.650, 0.400], [5.550, 0.400],                 // A, C
+    [11.750, 1.300],                                  // F
+    [0.650, 6.500], [5.550, 6.500], [11.750, 6.500], // G, H, J
+    [0.650, 7.950], [5.550, 7.950], [10.950, 7.950]  // K, L, M
+];
+// ADAPTED for this board: X scaled by board_w/standard_width (277/305mm) since
+// the board is narrower than standard ATX and 3 of the 9 holes would fall off
+// the edge unscaled. Y is left unscaled — EATX boards conventionally keep the
+// standard hole positions near the IO edge and add extra length below, rather
+// than stretching everything proportionally. NOT VERIFIED against MSI's actual
+// drawing — cross-check against the existing acrylic plate before drilling.
+mobo_hole_scale_x = board_w / (atx_std_w_in * 25.4);
+mobo_hole_d = 3.2; // mm, clearance-ish; cut as small slots for tolerance, not tight holes
 
 // --- IO shield cutout (standard ATX/EATX size — sourced, genuinely universal) ---
 io_w = 158.75;
 io_h = 44.45;
 io_top_margin = 8; // PLACEHOLDER — verify against the board's actual IO offset
 
-// --- PSU (Corsair RM850e — W/H fixed by ATX spec) ---
-psu_w = 150;  // sourced, fixed ATX standard
-psu_h = 86;   // sourced, fixed ATX standard
-psu_d = 140;  // ESTIMATE — verify against your RM850e
-psu_margin = 3; // mm clearance around the cutout, each side
+// --- PSU (Corsair RM850e — real ATX PSU mechanical spec, sourced) ---
+psu_w = 150; // mm, sourced, fixed ATX standard
+psu_h = 86;  // mm, sourced, fixed ATX standard
+psu_d = 140; // mm — ESTIMATE, verify against your RM850e
+psu_margin = 3;
+// Real 4-hole ATX PSU mounting pattern, sourced from Intel ATX Spec 2.01 Fig. 9,
+// origin = bottom-left of the 150x86mm rear face (X right, Y up):
+psu_holes = [
+    [6.0, 16.0],   // bottom-left
+    [6.0, 80.0],   // top-left
+    [144.0, 74.0], // top-right
+    [120.0, 6.0]   // bottom-right
+];
+psu_hole_d = 4.0; // mm, clearance for 6-32 screws
 
-// --- GPU cutouts (RTX 5080 Gaming Trio dimensions — SOURCED for the 5080 only.
-// The 4070 Ti was never looked up separately; these numbers are reused as a
-// placeholder for it too, flagged here explicitly.) ---
-gpu_card_length    = 338; // mm — extends into depth (Y), like the mobo overhang
-gpu_card_height    = 140; // mm — vertical extent on the panel (Z)
-gpu_card_thickness = 50;  // mm — horizontal extent on the panel (X, the bracket-width side)
-gpu_margin = 3; // mm clearance around each cutout, each side
-slot_pitch = 20.32; // mm — real standard, expansion-slot spacing (reference only here)
+// --- GPU cutouts (RTX 5080 Gaming Trio — SOURCED for the 5080 only; the 4070 Ti
+// was never looked up separately, these numbers are a placeholder for it too) ---
+gpu_card_length    = 338;
+gpu_card_height    = 140;
+gpu_card_thickness = 50;
+gpu_margin = 3;
+slot_pitch = 20.32; // mm, real standard, reference only
 
-// --- Derived stack height: what the real components actually need ---
+// --- Derived heights ---
 psu_seg_height = psu_h + 2*psu_margin;
 gpu_row_height = gpu_card_height + 2*gpu_margin;
-gpu_seg_height = 2 * gpu_row_height;
-right_col_width = psu_w + 2*psu_margin; // PSU governs (150mm) over GPU cutout width (~56mm)
-
-requested_panel_height = tray_u_height * u_pitch;      // 355.6mm at 8U
-required_panel_height  = psu_seg_height + gpu_seg_height; // real component stack, zero extra slack
+requested_panel_height = tray_u_height * u_pitch;
+required_panel_height  = max(psu_seg_height, io_h + io_top_margin + 20) + gpu_row_height;
 actual_panel_height = max(requested_panel_height, required_panel_height);
-// At current values: requested=355.6mm, required=384mm — the 8U ask is ~28mm
-// short of what PSU + 2 real-sized GPUs need with only fitting clearance
-// between them. actual_panel_height uses the larger number so nothing
-// overlaps; this is a flag, not a silent override — see cad/README.md.
 
-spine_width = 10; // mm, structural divider rib between columns
-left_col_width = board_w + 2*6; // mobo footprint + margin
+spine_width = 10;
+half_width = (rack_clear_width - spine_width) / 2;
 
 // --- Structure ---
 plate_t = 6;
 wall_t  = 4;
 ear_t   = 4;
 
-// --- Slide hardware (off-the-shelf steel, ball-bearing, full-extension) ---
+// --- Slide hardware ---
 slide_hole_pitch  = 32;   // PLACEHOLDER — verify against your slides
 slide_tab_height  = 20;
 slide_tab_screw_d = 5;
@@ -82,21 +112,17 @@ $fn = 48;
 
 // ============ derived ============
 tray_width = rack_clear_width;
-tray_depth = rack_usable_depth;
-right_col_x0 = tray_width - right_col_width;
+tray_depth = rack_overall_d;
 
 module rack_ear(h) {
-    // Front mounting ear — the flange that screws the whole unit into the
-    // rack. Standing tab, h tall, EIA-310 3-hole-per-U pattern repeated.
     ear_depth = 20;
     n_u = ceil(h / u_pitch);
     difference() {
         cube([ear_t, ear_depth, h]);
         for (u = [0 : n_u - 1]) {
-            if (u*u_pitch + hole_a < h)
-                translate([-1, ear_depth/2, u*u_pitch + hole_a]) rotate([0,90,0]) cylinder(d=6.4, h=ear_t+2);
-            if (u*u_pitch + hole_c < h)
-                translate([-1, ear_depth/2, u*u_pitch + hole_c]) rotate([0,90,0]) cylinder(d=6.4, h=ear_t+2);
+            for (hh = [hole_a, hole_b, hole_c])
+                if (u*u_pitch + hh < h)
+                    translate([-1, ear_depth/2, u*u_pitch + hh]) rotate([0,90,0]) cylinder(d=6.4, h=ear_t+2);
         }
     }
 }
@@ -106,9 +132,7 @@ module base_plate() {
 }
 
 module spine() {
-    // Structural rib dividing the mobo column from the PSU/GPU column, and
-    // stiffening the tiled front-panel segments against each other.
-    translate([right_col_x0 - spine_width, 0, plate_t])
+    translate([half_width, 0, plate_t])
         cube([spine_width, mount_plate_depth, actual_panel_height]);
 }
 
@@ -116,56 +140,109 @@ module slide_tab(x) {
     translate([x, tray_depth/2 - 40, 0])
         difference() {
             cube([wall_t, 80, slide_tab_height]);
-            translate([wall_t/2, 40 - slide_hole_pitch/2, -1])
-                cylinder(d=slide_tab_screw_d, h=slide_tab_height+2);
-            translate([wall_t/2, 40 + slide_hole_pitch/2, -1])
-                cylinder(d=slide_tab_screw_d, h=slide_tab_height+2);
+            translate([wall_t/2, 40 - slide_hole_pitch/2, -1]) cylinder(d=slide_tab_screw_d, h=slide_tab_height+2);
+            translate([wall_t/2, 40 + slide_hole_pitch/2, -1]) cylinder(d=slide_tab_screw_d, h=slide_tab_height+2);
         }
 }
 
 module mobo_segment() {
-    // Left column. Standoff holes deliberately left unpunched — transfer
-    // from the existing acrylic plate rather than a guessed ATX table.
-    io_x0 = (left_col_width - io_w)/2;
+    // Two pieces, deliberately at different depths:
+    //  1. A narrow front-facing IO bezel strip in the top-right (matches
+    //     the photo — that's all that's visible from the front).
+    //  2. The actual standoff plate, full real board size (277x304.8mm),
+    //     set back in depth. It's wider than the top-right column alone
+    //     (the board is 277mm; the column is only ~half_width) so it has
+    //     to sit behind the PSU bracket too, not collide with it — this
+    //     matches how the board's real footprint relates to what's
+    //     actually visible from the front in the photo.
+    io_col_x0 = tray_width - half_width;
+    io_x0 = io_col_x0 + (half_width - io_w)/2;
+    plate_top = plate_t + actual_panel_height;
+    psu_seg_z0 = actual_panel_height - psu_seg_height;
+
     difference() {
-        translate([0, 0, plate_t]) cube([left_col_width, wall_t, actual_panel_height]);
-        translate([io_x0, -1, plate_t + actual_panel_height - io_h - io_top_margin])
+        translate([io_col_x0, 0, plate_t + psu_seg_z0]) cube([half_width, wall_t, psu_seg_height]);
+        translate([io_x0, -1, plate_top - io_h - io_top_margin])
             cube([io_w, wall_t+2, io_h]);
     }
-    translate([(left_col_width-board_w)/2, wall_t + 0.5, plate_t])
-        %cube([board_w, 0.5, board_d]); // ghosted reference outline only
-    translate([(left_col_width-board_w)/2 + 10, wall_t + 1, plate_t + 10])
+
+    plate_x0 = tray_width - board_w; // right-aligned; may run slightly past
+                                       // the tray's left edge if board_w >
+                                       // tray_width — rack_clear_width is
+                                       // still an unverified placeholder
+    plate_y = mount_plate_depth; // set back from the PSU/GPU brackets at y=0
+    translate([plate_x0, plate_y, plate_t])
+        difference() {
+            cube([board_w, wall_t, board_d]);
+            for (h = atx_holes_in) {
+                hx = h[0]*25.4*mobo_hole_scale_x;
+                hz = board_d - h[1]*25.4; // measured down from the board's top (IO) edge
+                translate([hx, -1, hz])
+                    rotate([-90,0,0])
+                        hull() { // small slot, not a tight hole — adaptation tolerance
+                            cylinder(d=mobo_hole_d, h=wall_t+2);
+                            translate([1.5,0,0]) cylinder(d=mobo_hole_d, h=wall_t+2);
+                        }
+            }
+        }
+    translate([plate_x0 + 10, plate_y + wall_t + 1, plate_t + 10])
         rotate([90, 0, 0])
-            linear_extrude(0.6) text("TRANSFER HOLES FROM OLD PLATE", size=6);
+            linear_extrude(0.6) text("ADAPTED ATX HOLES - CROSS-CHECK OLD PLATE", size=5);
 }
 
 module psu_segment() {
-    // Top-right. PSU cutout sized to the real ATX rear face (150x86mm) plus
-    // fitting clearance, with a support shelf behind it — the front panel
-    // alone shouldn't cantilever the PSU's weight.
+    // Top-left, open bracket — PSU's own face stays exposed, no blanking
+    // panel in front of it (matches the photo). Real 4-hole ATX pattern.
     z0 = actual_panel_height - psu_seg_height;
-    cx0 = right_col_x0 + psu_margin;
+    cx0 = psu_margin;
+    // frame: just a border + support shelf, not a solid panel
     difference() {
-        translate([right_col_x0, 0, plate_t + z0]) cube([right_col_width, wall_t, psu_seg_height]);
-        translate([cx0, -1, plate_t + z0 + psu_margin])
-            cube([psu_w, wall_t+2, psu_h]);
+        translate([0, 0, plate_t + z0]) cube([half_width, wall_t, psu_seg_height]);
+        translate([cx0, -1, plate_t + z0 + psu_margin]) cube([psu_w, wall_t+2, psu_h]);
     }
-    // support shelf, screws into the PSU's bottom face
+    for (h = psu_holes)
+        translate([cx0 + h[0], wall_t/2, plate_t + z0 + psu_margin + h[1]])
+            rotate([90,0,0]) cylinder(d=psu_hole_d, h=wall_t+1, center=true);
+    // support shelf behind, screws into the PSU's bottom face
     translate([cx0, wall_t, plate_t + z0 + psu_margin])
         cube([psu_w, psu_d, wall_t]);
 }
 
-module gpu_segment() {
-    // Below the PSU. Two stacked card-bracket cutouts, zero-margin stack
-    // (see actual_panel_height derivation) — dry-fit and adjust.
-    for (i = [0:1]) {
-        row_z0 = i * gpu_row_height;
-        cx0 = right_col_x0 + (right_col_width - (gpu_card_thickness + 2*gpu_margin))/2;
-        difference() {
-            translate([right_col_x0, 0, plate_t + row_z0]) cube([right_col_width, wall_t, gpu_row_height]);
-            translate([cx0, -1, plate_t + row_z0 + gpu_margin])
-                cube([gpu_card_thickness + 2*gpu_margin, wall_t+2, gpu_card_height]);
+module gpu_bracket(x0) {
+    // Open bracket, full width of its half-column — card sits with slot/
+    // connector down, cooler fully exposed (no blanking panel), matching
+    // the photo. Screw slots at standard expansion-slot pitch, placeholder
+    // vertical position pending dry-fit.
+    difference() {
+        union() {
+            cube([wall_t, tray_depth, plate_t]);
+            translate([0, 0, 0]) cube([wall_t, tray_depth, gpu_row_height]);
+            translate([half_width - wall_t, 0, 0]) cube([wall_t, tray_depth, gpu_row_height]);
         }
+        for (i = [0:3])
+            translate([-1, 20 + i*slot_pitch, 15 + i*25])
+                rotate([0, 90, 0]) cylinder(d=4.5, h=wall_t+2);
+    }
+}
+
+module rack_reference() {
+    // NOT a printable part — a reference frame at the rack's real sourced
+    // dimensions, to check the tray's fit against. Render only, semi-
+    // transparent, excluded from "structural"/"mobo"/"gpu"/"psu" exports.
+    post_w = 15; post_t = 3;
+    color("Gray", 0.35) {
+        for (side = [0, 1]) {
+            x = side == 0 ? -post_w - 5 : rack_clear_width + 5;
+            translate([x, 0, 0])
+                difference() {
+                    cube([post_w, rack_overall_d, rack_overall_h]);
+                    for (u = [0:rack_u_count-1])
+                        for (hh = [hole_a, hole_b, hole_c])
+                            translate([post_w/2, 5, rack_rail_end_offset + u*u_pitch + hh])
+                                rotate([-90,0,0]) cylinder(d=6.4, h=post_t+2);
+                }
+        }
+        translate([-post_w - 5, 0, 0]) cube([rack_clear_width + 2*post_w + 10, rack_overall_d, 4]);
     }
 }
 
@@ -184,9 +261,21 @@ module tray() {
         color("FireBrick") mobo_segment();
     }
     if (render_part == "all" || render_part == "gpu") {
-        color("SeaGreen") gpu_segment();
+        color("SeaGreen") {
+            translate([0, 0, plate_t]) gpu_bracket(0);
+            translate([half_width + spine_width, 0, plate_t]) gpu_bracket(0);
+        }
     }
     if (render_part == "all" || render_part == "psu") {
+        color("MediumPurple") psu_segment();
+    }
+    if (render_part == "rack_reference" || render_part == "fit_check") {
+        rack_reference();
+    }
+    if (render_part == "fit_check") {
+        color("SteelBlue") { base_plate(); translate([-ear_t, 0, plate_t]) rack_ear(actual_panel_height); translate([tray_width, 0, plate_t]) rack_ear(actual_panel_height); spine(); slide_tab(0); slide_tab(tray_width - wall_t); }
+        color("FireBrick") mobo_segment();
+        color("SeaGreen") { translate([0, 0, plate_t]) gpu_bracket(0); translate([half_width + spine_width, 0, plate_t]) gpu_bracket(0); }
         color("MediumPurple") psu_segment();
     }
 }

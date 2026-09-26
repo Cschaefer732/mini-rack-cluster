@@ -85,6 +85,6 @@ wiki/           Obsidian-compatible knowledge layer for this project
 - [x] Physical build complete
 - [x] Parts + pricing documented
 - [x] Build photos added (`docs/photos/`)
-- [ ] Slide-out mobo/GPU/PSU tray — v0.3 CAD draft in `cad/` (case rear-panel layout: mobo/PSU/GPU segments, mounting flanges), needs rack-width measurement + dry-fit before printing
+- [ ] Slide-out mobo/GPU/PSU tray — v0.4 CAD draft in `cad/` (layout verified against build photo, real PSU/mobo mounting holes sourced, rack reference frame), needs rack-width measurement + dry-fit before printing
 - [ ] Rack elevation / wiring diagram
 - [ ] `scripts/` — no automation defined yet
