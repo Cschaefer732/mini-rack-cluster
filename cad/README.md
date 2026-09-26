@@ -4,74 +4,72 @@
 matters is a named variable at the top of the file with a comment saying
 whether it's a sourced spec or a placeholder you need to verify.
 
-**Status: v0.2 draft, not print-ready.** Renders clean and exports manifold
-STLs (checked — `NoError` on the combined model and all 4 per-part
-exports), but it has not been dry-fit against real hardware. Do not print
-at these defaults.
+**Status: v0.3 draft, not print-ready.** Manifold STLs export clean
+(`NoError` on the combined model and all 4 per-part exports), but it has
+not been dry-fit against real hardware. Do not print at these defaults.
 
-## v0.2 changes
+## v0.3 — rebuilt around a "rear panel" model
 
-- **Motherboard mount switched from flat/horizontal to vertical.** v0.1 laid
-  the board flat on the tray floor; that's wrong once the IO shield needs
-  to be front-facing (a flat-mounted board's ports project sideways at
-  deck height, not usably). v0.2 stands the board up, matching how the
-  current acrylic-plate build already mounts it — the mounting plate
-  itself is now also the front face, with the IO cutout through it.
-- **`tray_u_height` raised to 8U** (was 6, an unmeasured guess from the
-  build photo).
-- **IO shield cutout added** — 158.75×44.45mm, the real ATX/EATX standard
-  size (genuinely universal, high confidence). Position along the board's
-  width is centered by default and **not verified** against the X670E
-  ACE's actual IO shield offset — check before printing.
-- **Per-subsystem color coding**, both in the OpenSCAD preview
-  (`color()`) and as 4 separate STL exports for the web viewer: structural
-  parts blue, motherboard mount red, GPU bracket green, PSU cradle purple.
-- **`rack_clear_width` placeholder raised to 350mm** (was 300) — 300 put
-  the board's zone at a negative X coordinate once combined with the GPU
-  offset, which only happened to go unnoticed because the old preview
-  render was silently using OpenSCAD's throwntogether mode (see below).
-  Still a placeholder either way — measure the real number.
+Rethought as what it actually is: a standard PC case's **rear panel**
+layout (IO shield + PSU cutout + expansion-slot brackets), just facing the
+rack's front instead of a desk's back. Four tiled segments instead of the
+v0.2 floor-plan approach:
 
-## A rendering pitfall worth knowing about
+- **Structural (blue)** — base plate, rack ears (the flanges that screw
+  the whole unit into the rack), a spine rib dividing the two columns,
+  slide-rail tabs.
+- **Motherboard segment (red)** — left column, full height. IO shield
+  cutout, standoffs left unpunched (transfer from the existing acrylic
+  plate).
+- **PSU segment (purple)** — top-right. Real ATX cutout (150×86mm) plus a
+  support shelf behind it, since the front panel alone shouldn't
+  cantilever the PSU's weight.
+- **GPU segment (green)** — below the PSU, two stacked card-bracket
+  cutouts sized from the RTX 5080 Gaming Trio's real dimensions
+  (338×140×50mm, sourced). **The 4070 Ti was never looked up separately —
+  these numbers are reused as a placeholder for it too.**
 
-The v0.1 preview PNGs looked structurally plausible but were wrong: an IO
-cutout that's genuinely in the geometry (confirmed by the STL export being
-a valid manifold with the correct hole) didn't show up in the PNG at all.
-Cause: `openscad -o file.png` without `--render` uses OpenSCAD's preview
-mode, which can render overlapping/differenced solids without properly
-resolving the boolean for display. **STL export always fully evaluates the
-CSG tree — it was trustworthy the whole time — but PNG preview needs the
-`--render` flag to be trustworthy too.** Both export commands below now use
-it.
+## A real finding: 8U isn't quite enough for the real stack
+
+You asked for 8U (355.6mm). Stacking the real PSU height (86mm) + two real
+GPU heights (140mm each) with only fitting clearance between them —
+already zero margin, no slack to cut — needs ~384mm. That's ~28mm short.
+`actual_panel_height` in the model uses `max(requested, required)`, so the
+ears and panel are sized to 384mm rather than silently shrinking sourced
+component dimensions to force an 8U fit. If you want to stay at exactly
+8U, something has to give: no room left to trim margins further, so
+either a component needs to change or a different height needs to be
+accepted.
+
+## A rendering pitfall worth knowing about (still applies)
+
+`openscad -o file.png` without `--render` uses preview mode, which can
+silently fail to display a real, correctly-differenced cutout — this bit
+the v0.1 IO cutout. STL export always fully evaluates the CSG tree and was
+trustworthy the whole time; only PNG preview needs `--render`. Both
+commands below use it.
 
 ## Before printing
 
-1. **Measure `rack_clear_width`.** This is the one number that changes the
-   whole layout and I don't have it — generic "10-inch rack" specs (~222mm
-   clear) contradict the fact that a 277mm-wide board already fits in this
-   rack, so the real number is almost certainly wider than the generic
-   spec. Measure interior width (rail-to-rail or panel-to-panel) and update
-   the variable.
+1. **Measure `rack_clear_width`.** Bumped to 460mm this revision — the
+   left column (mobo, 277mm) + spine + right column (PSU-width-driven,
+   ~156mm) no longer fits the earlier 350mm placeholder. Still a
+   placeholder either way.
 2. **Transfer motherboard standoff holes from the existing acrylic plate**
-   by tracing — don't trust a generic ATX hole-coordinate table for this;
-   I couldn't source MSI's exact EATX hole positions with confidence, and a
-   wrong guess wastes a print. The model leaves this zone unpunched on
-   purpose (marked, not drilled).
+   by tracing — don't trust a generic ATX hole-coordinate table; I
+   couldn't source MSI's exact EATX hole positions with confidence.
 3. **Verify the IO cutout position** against the X670E ACE's actual IO
-   shield offset — the cutout size (158.75×44.45mm) is a real standard,
-   but its position (centered on the board's width, 8mm from the top) is
+   shield offset — size (158.75×44.45mm) is a real standard, position is
    a placeholder.
-4. **Dry-fit the GPU bracket.** `slot_count`/`slot_pitch` on the vertical
-   fin are a starting fixture sized to standard expansion-slot spacing
-   (20.32mm — that part's a real spec), not measured against your actual
-   riser cable routing. Adjust after a physical test fit.
-5. **Verify `psu_d`** (140mm assumed) against the actual RM850e — modular
-   ATX PSU depth varies by wattage/model.
-6. **Confirm slide hardware and `slide_hole_pitch`** against whatever
-   drawer slides you actually buy — the model assumes off-the-shelf steel
-   ball-bearing full-extension slides (not printed rails; plastic can't
-   reliably carry mobo + 2 GPUs + PSU through repeated slide cycles), but
-   the mounting-tab hole spacing is a placeholder.
+4. **Source the 4070 Ti's real dimensions** and update `gpu_card_height`/
+   `gpu_card_thickness`/`gpu_card_length` if they differ meaningfully from
+   the 5080's — right now both cutouts assume identical card sizes.
+5. **Verify `psu_d`** (140mm assumed) against the actual RM850e.
+6. **Confirm slide hardware and `slide_hole_pitch`** — the model assumes
+   off-the-shelf steel ball-bearing full-extension slides (not printed
+   rails), but the mounting-tab hole spacing is a placeholder.
+7. **Decide on the 8U vs. 384mm gap** above before committing to ear
+   height.
 
 ## Sourced (trustworthy) vs. placeholder (verify) dimensions
 
@@ -79,13 +77,13 @@ it.
 |---|---|---|
 | `board_w` / `board_d` | 277 × 304.8mm | Sourced — MSI/Micro Center spec for the X670E ACE |
 | `u_pitch`, `hole_a`/`hole_c` | EIA-310 standard | Sourced — universal rack standard |
-| `slot_pitch` | 20.32mm | Sourced — standard expansion-slot spacing |
+| `slot_pitch` | 20.32mm | Sourced — standard expansion-slot spacing (reference only) |
 | `psu_w` / `psu_h` | 150 × 86mm | Sourced — fixed ATX spec |
 | `io_w` / `io_h` | 158.75 × 44.45mm | Sourced — standard ATX/EATX IO shield opening |
-| `rack_clear_width` | 350mm | **Placeholder — measure yours** |
+| `gpu_card_length/height/thickness` | 338 × 140 × 50mm | Sourced for the **5080 only** — 4070 Ti reuses these as a placeholder |
+| `rack_clear_width` | 460mm | **Placeholder — measure yours** |
 | `psu_d` | 140mm | Estimate — typical modular ATX, verify against RM850e |
-| `board_offset_right` | 63.5mm | Your "2-3in" ask, midpoint — adjust to taste |
-| `tray_u_height` | 8U | Estimate — GPU cooler stack clearance above/below the board, not measured |
+| `tray_u_height` (requested) vs. `actual_panel_height` (used) | 8U (355.6mm) vs. 384mm | Real component stack needs more — see finding above |
 | `io_top_margin`, IO cutout X position | 8mm / centered | Placeholder — verify against the board's actual IO shield offset |
 | `mount_plate_depth` | 12mm | Placeholder — verify it clears riser cable bend radius |
 | `slide_hole_pitch` | 32mm | Placeholder — match your actual purchased slides |
@@ -93,18 +91,14 @@ it.
 ## Render / export
 
 ```
-openscad --render -o preview-top.png --imgsize=1600,1100 --autocenter --viewall \
+openscad --render -o preview-top.png --imgsize=1600,1200 --autocenter --viewall \
   --projection=ortho --colorscheme=Tomorrow mobo-gpu-psu-tray.scad
 
 # Combined model
-openscad --render -o mobo-gpu-psu-tray.stl mobo-gpu-psu-tray.scad
+openscad -o mobo-gpu-psu-tray.stl mobo-gpu-psu-tray.scad
 
 # Per-subsystem parts (for colored printing or the web viewer)
 for part in structural mobo gpu psu; do
   openscad -D "render_part=\"$part\"" -o "part-$part.stl" mobo-gpu-psu-tray.scad
 done
 ```
-
-Always pass `--render` for PNG preview exports — see the pitfall note
-above. STL export doesn't need the flag (it always fully evaluates), but
-it doesn't hurt to include it either.

@@ -6,35 +6,39 @@ sources: [cad/mobo-gpu-psu-tray.scad, cad/README.md]
 
 # Slide-out Mobo/GPU/PSU Tray
 
-v0.2 parametric OpenSCAD draft (`cad/mobo-gpu-psu-tray.scad`) for a rack
-shelf that mounts the [[fleet-nodes|nova-linux]] motherboard vertically
-(matching the current acrylic-plate build, not flat), offset from the
-right edge, with a vertical GPU bracket in the remaining strip and a PSU
-cradle on the floor — all on one tray that pulls out on off-the-shelf steel
-ball-bearing drawer slides. Color-coded by subsystem (structural blue,
-motherboard red, GPU bracket green, PSU purple) in both the OpenSCAD
-preview and the 4 separate STL exports used by the interactive web viewer.
+v0.3 parametric OpenSCAD draft (`cad/mobo-gpu-psu-tray.scad`), rebuilt
+around a "rear panel" model: this front face functions like a standard PC
+case's rear panel (IO shield + PSU cutout + expansion-slot brackets), just
+facing the rack's front. Four tiled, color-coded segments in both the
+OpenSCAD preview and the interactive web viewer:
 
-v0.1 mounted the board flat/horizontal; switched to vertical in v0.2 once
-the IO shield needed to be front-facing — a flat mount puts the ports at
-deck height facing sideways, unusable. The mounting plate now doubles as
-the front IO bezel, with a cutout at the real ATX/EATX standard size
-(158.75×44.45mm).
+- **Structural (blue)** — base plate, rack ears (the flanges that screw
+  the whole unit into the rack), spine divider, slide-rail tabs.
+- **Motherboard (red)** — left column, IO cutout, unpunched standoff zone.
+- **PSU (purple)** — top-right, real ATX cutout (150×86mm) + support shelf.
+- **GPU (green)** — below the PSU, two stacked card cutouts sized from the
+  [[fleet-nodes|nova-linux]] RTX 5080's real dimensions (338×140×50mm,
+  sourced) — **the 4070 Ti was never looked up separately**, same numbers
+  reused as a placeholder for it.
 
-Not print-ready. Sourced specs (board size, EIA-310 standard, expansion-
-slot pitch, ATX PSU footprint, IO shield cutout size) are trustworthy;
-placeholders pending real measurement or dry-fit include rack interior
-clear width (generic "10-inch rack" figures contradict a 277mm board
-already fitting this rack), the IO cutout's exact position on the board,
-GPU bracket slot position, and PSU depth. Motherboard standoff holes are
-deliberately left unpunched — transfer from the existing working acrylic
-plate rather than trust a generic ATX hole table.
+## History
 
-Also caught a rendering pitfall worth remembering: `openscad -o file.png`
+- v0.1: flat/horizontal motherboard mount — wrong once the IO shield
+  needed to be front-facing.
+- v0.2: switched to vertical mounting (matches the current acrylic-plate
+  build), added the IO cutout, still a floor-plan layout with the PSU as
+  a separate floor cradle.
+- v0.3: reframed as a case rear-panel layout per explicit front-panel
+  description (PSU top-right, GPUs below with slot-down orientation, mobo
+  + spine in the remaining column, gaps filled, mounting flanges). Found
+  that the real PSU + 2 GPU stack needs ~384mm, ~28mm more than the
+  requested 8U (355.6mm) — the model sizes ears/panel to the larger
+  number rather than silently shrinking sourced dimensions to fit.
+
+Also caught and documented a rendering pitfall: `openscad -o file.png`
 without `--render` uses preview mode, which can silently fail to show a
-real, correctly-differenced cutout (the STL export was right the whole
-time — only the PNG preview was misleading). Always pass `--render` for
-preview images.
+real, correctly-differenced cutout (STL export was right the whole time —
+only the PNG preview was misleading).
 
 Full list of sourced-vs-placeholder dimensions: `cad/README.md`.
 

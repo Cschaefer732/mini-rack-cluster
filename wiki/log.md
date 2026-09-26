@@ -29,3 +29,12 @@ gpu/psu), exported per-part STLs. Caught and documented a --render vs
 preview-mode PNG export pitfall that hid a real, correctly-cut IO
 cutout from the v0.1 preview image (STL export was trustworthy the
 whole time).
+
+## [2026-09-26] ingest | Slide-out Tray CAD v0.3
+Rebuilt around a "rear panel" model per front-panel layout description:
+PSU top-right, GPUs stacked below (sized from RTX 5080's real 338x140x50mm,
+4070 Ti unsourced/reused placeholder), mobo + spine in remaining column,
+mounting flanges confirmed. Found real PSU+2GPU stack needs ~384mm vs
+requested 8U (355.6mm) - flagged rather than silently shrinking sourced
+dimensions. Fixed a leftover nonsense algebra bug in the GPU cutout width
+expression caught during review before export.
