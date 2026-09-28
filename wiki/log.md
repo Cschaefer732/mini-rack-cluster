@@ -72,3 +72,29 @@ design guide (2.71mm/0.1065in 6-32 tap, sized up to 3.5mm clearance for
 plastic), which also independently confirmed the 20.32mm slot_pitch
 already in the file. Re-exported all STLs (still NoError/manifold),
 republished the viewer (v6).
+
+
+## [2026-09-28] ingest | Slide-out Tray CAD v0.6
+User: "you need to fucking scrap the design you made, its fucking
+dogshit." Asked scope via clarifying question - user chose keep the
+goal, restart the design from zero. Before rebuilding, re-checked the
+v0.5 IO rotation against a zoomed crop of the real photo: it's a
+completely standard MSI X670E ACE rear IO panel (2-row USB grid,
+side-by-side WiFi antennas, audio row) - not rotated. v0.5's "fix" was
+based on misreading normal port stacking as rotation evidence. Reverted.
+Separately, re-checking every cutout against its own panel bounds (never
+actually done before - only glanced at renders) found the PSU cutout
+(150mm) was being cut from a 130mm-wide panel, same overflow class as
+the IO bug, sitting undetected since v0.4. Root cause: the "two 130mm
+half-columns" floorplan never fit either real component - not PSU
+(150mm), not IO shield (158.75mm). Rebuilt column widths bottom-up from
+real sourced sizes instead of an assumed 50/50 split. This surfaced a
+real, previously-hidden conflict: psu_col_w + spine + io_col_w =
+340.75mm, but rack_clear_width (the assumed rack interior width) is only
+270mm - a 70mm gap. Made this visible instead of silently absorbing it:
+rack_reference() still renders at the 270mm placeholder while the tray
+sizes itself to what it actually needs, so fit_check now shows the tray
+overhanging the rack posts. This is now the real blocker - needs an
+actual rack measurement and a straight-on (not 3/4 angle) photo to
+confirm PSU and mobo genuinely share one depth plane. Re-exported all
+STLs (NoError/manifold), republished viewer (v7).

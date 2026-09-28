@@ -85,6 +85,6 @@ wiki/           Obsidian-compatible knowledge layer for this project
 - [x] Physical build complete
 - [x] Parts + pricing documented
 - [x] Build photos added (`docs/photos/`)
-- [ ] Slide-out mobo/GPU/PSU tray — v0.5 CAD draft in `cad/` (layout verified against build photo, real PSU/mobo/GPU mounting hardware sourced, bonded rack flanges, rack reference frame), needs rack-width measurement + dry-fit before printing
+- [ ] Slide-out mobo/GPU/PSU tray — v0.6 CAD draft in `cad/`, **blocked**: PSU+IO shield need ~341mm side by side, assumed rack width is only 270mm — needs a real rack measurement + straight-on photo before the floorplan can be trusted
 - [ ] Rack elevation / wiring diagram
 - [ ] `scripts/` — no automation defined yet

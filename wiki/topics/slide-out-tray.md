@@ -6,19 +6,23 @@ sources: [cad/mobo-gpu-psu-tray.scad, cad/README.md, docs/photos/rack-front.jpg]
 
 # Slide-out Mobo/GPU/PSU Tray
 
-v0.5 parametric OpenSCAD draft (`cad/mobo-gpu-psu-tray.scad`). Layout
+v0.6 parametric OpenSCAD draft (`cad/mobo-gpu-psu-tray.scad`). Layout
 verified against the actual build photo, not guessed: PSU top-left (open
-bracket, exposed face), motherboard IO shield top-right (cutout rotated
-90&deg; — ports stack vertically in the photo, not side by side), two GPUs
-full-width below (open brackets, coolers exposed, slot-down, now with a
-real support shelf + sourced screw hole each), center spine, outer
-mounting flanges (rebuilt as bonded L-brackets, not floating posts). Real
-sourced mounting holes for the PSU (genuinely universal 4-hole ATX
-pattern) and an adapted version of the real 9-hole ATX standoff pattern
-for the motherboard (scaled for the X670E ACE's non-standard width — not
-verified against MSI's own drawing). A reference rack frame, modeled at
-the Tecmojo 12U rack's real sourced dimensions, lets the fit be checked
-visually.
+bracket, exposed face), motherboard IO shield top-right (standard,
+unrotated orientation — v0.5's 90&deg; rotation was based on misreading a
+normal multi-row USB layout as a rotated shield), two GPUs full-width
+below (open brackets, coolers exposed, slot-down, real support shelf +
+sourced screw hole each), center spine, outer mounting flanges (bonded
+L-brackets). Real sourced mounting holes for the PSU (genuinely universal
+4-hole ATX pattern) and an adapted version of the real 9-hole ATX
+standoff pattern for the motherboard (scaled for the X670E ACE's
+non-standard width — not verified against MSI's own drawing). Column
+widths are now derived from each component's real size instead of an
+assumed 50/50 split — which surfaced a genuine, unresolved conflict:
+the PSU and IO shield need ~341mm side by side, the rack is an assumed
+270mm. A reference rack frame, modeled at the Tecmojo 12U rack's real
+sourced dimensions, makes this visible in the render instead of hiding
+it.
 
 ## History
 
@@ -49,6 +53,25 @@ visually.
   real screw spec. Added a support shelf plus a bracket screw hole sized
   from Protocase's ATX/PCI enclosure design guide (also independently
   confirms the 20.32mm slot pitch already in the file).
+- v0.6: user called the whole design "dogshit" and asked for the mobo
+  mount rebuilt from zero. Re-examining before rebuilding found the v0.5
+  IO rotation was itself wrong — a zoomed crop of the photo shows a
+  completely standard MSI ACE rear IO panel (2-row USB grid, side-by-side
+  antennas), not a rotated one; reverted. Independently, re-checking
+  panel-vs-cutout bounds (which nobody had actually done, just eyeballed
+  renders) found the PSU cutout (150mm) was being cut from a 130mm-wide
+  panel — same overflow bug as the IO cutout, never caught. Root cause:
+  the "two 130mm half-columns" floorplan never fit either real
+  component. Rebuilt column widths bottom-up from real part sizes
+  (`psu_col_w`=156mm, `io_col_w`=174.75mm), which surfaced a genuine
+  width conflict: side by side they need 340.75mm, and the rack's
+  assumed clear width is only 270mm (itself unmeasured). Made this
+  visible rather than hidden: `rack_reference()` still draws its posts
+  at the 270mm placeholder while the tray is sized to what it actually
+  needs, so the fit_check render now shows the tray overhanging the
+  posts. Blocking on a real rack-width measurement and a straight-on
+  plan-view photo to confirm the PSU and mobo really share one depth
+  plane.
 
 ## [[fleet-nodes]] cross-reference
 

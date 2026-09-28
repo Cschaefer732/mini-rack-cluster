@@ -4,13 +4,61 @@
 matters is a named variable at the top of the file with a comment saying
 whether it's a sourced spec or a placeholder you need to verify.
 
-**Status: v0.5 draft, not print-ready.** Manifold STLs export clean
-(`NoError` on the combined model and all per-part exports, including the
-rack reference frame). Real sourced mounting holes for PSU and (adapted)
-motherboard are cut into the geometry, the IO cutout is correctly
-oriented, the rack ears are real bonded flanges, and the GPU brackets
-have a real support shelf + sourced screw hole. Still not dry-fit against
-real hardware.
+**Status: v0.6 draft, not print-ready, and now honestly blocked on one
+real measurement.** Manifold STLs export clean (`NoError` on the combined
+model and all per-part exports). Every panel's cutout is now checked to
+actually fit inside the panel it's cut from. But the floorplan this
+round surfaced a real physical conflict: **the PSU and IO shield, sized
+to what they actually need, require ~341mm side by side — the rack is
+only ~270-280mm.** See "v0.6" below before printing anything.
+
+## v0.6 — floorplan rebuilt from real sizes, found a real width conflict
+
+v0.5 shipped with two more defects, on top of the ones it claimed to
+fix:
+
+- **The IO rotation in v0.5 was wrong.** It was based on the photo
+  showing ports "stacked vertically" and concluding the whole board was
+  mounted rotated 90&deg;. Cropped and zoomed into the actual photo this
+  round: that's just the MSI X670E ACE's completely standard rear IO
+  panel — a 2-row USB grid, side-by-side WiFi antennas, a row of audio
+  jacks. Totally normal, unrotated layout. Worse, the v0.5 fix only
+  rotated the *cutout* and left the *standoff hole pattern* on the old
+  unrotated mapping — even if the board really had been rotated, holes
+  and cutout are rigidly on the same PCB and can't be rotated
+  independently. Reverted to the standard orientation.
+- **The PSU cutout (150mm) was being cut from a panel sized to
+  `half_width` (130mm)** — narrower than the cutout itself. Same class
+  of bug as the v0.4 IO overflow, just never caught because nobody
+  checked the numbers against the panel bounds, only glanced at a
+  render. Both the PSU (150mm) and the IO shield (158.75mm) need more
+  than half of any width this tray plausibly has — the "split into two
+  equal half-columns" floorplan never actually fit either real
+  component, all the way back to when it was introduced.
+
+Fix: columns are now sized bottom-up from each component's real
+footprint (`psu_col_w`, `io_col_w`) instead of an assumed 50/50 split,
+and both cutouts are re-verified to sit fully inside their own panel
+(checked by rendering each part alone and looking, not just the combined
+assembly).
+
+That surfaced the real problem: `psu_col_w + spine_width + io_col_w` =
+**340.75mm**, computed from real, mostly-sourced dimensions — but
+`rack_clear_width` (270mm) is itself only a reasoned placeholder. The
+model now makes this conflict visible instead of hiding it:
+`rack_reference()` still draws its posts at the assumed 270mm, while the
+tray itself is sized to whatever it actually needs
+(`tray_width = max(rack_clear_width, required_tray_width)`) — so in the
+`fit_check` render, the tray now visibly overhangs the rack posts on the
+right side. That gap is real information, not a rendering bug: **either
+the real rack is wider than 270mm, or the PSU and motherboard don't
+actually sit fully side-by-side at the same depth in the real build (the
+photo could be foreshortening an overlap that isn't there in plan view),
+or the layout needs to change from side-by-side to stacked.** This can't
+be resolved with more reasoning from a photo — it needs the actual rack
+interior width measured, and ideally a straight-on plan-view photo (not
+the current angled 3/4 shot) to check whether the PSU and IO shield
+really share the same depth plane.
 
 ## v0.5 — IO orientation fixed, real flanges, real GPU mount
 
@@ -95,14 +143,19 @@ render (not just trusting the code) against the photo:
 
 ## Before printing
 
+0. **Blocking: measure the real rack interior width and resolve the
+   341mm-vs-270mm conflict** (see v0.6 above). Everything else in this
+   list assumes a side-by-side PSU+mobo layout that may not survive that
+   measurement.
 1. **Measure `rack_clear_width`.** Currently 270mm, reasoned from overall
-   width minus assumed wall thickness — not measured.
+   width minus assumed wall thickness — not measured, and known to be
+   too narrow for what the layout currently needs (see item 0).
 2. **Cross-check the adapted motherboard holes** against the existing
    acrylic plate. They're derived from a real spec but scaled for a
    different board size than the source table covers.
-3. **Verify the IO cutout position** — size (158.75×44.45mm, now cut
-   rotated 90&deg; to match the photo) is a real universal standard; its
-   position within the bezel column is still a placeholder.
+3. **Verify the IO cutout position** — size (158.75×44.45mm, standard
+   unrotated orientation) is a real universal standard; its position
+   within the bezel column is still a placeholder.
 4. **Verify the PSU holes** land correctly relative to your specific
    RM850e — the 4-hole ATX pattern is genuinely universal, but confirm
    `psu_d` (140mm, estimated) against the real unit too.
@@ -129,7 +182,8 @@ render (not just trusting the code) against the photo:
 | `gpu_card_length/height/thickness` | 338 × 140 × 50mm | Sourced for the **5080 only** — 4070 Ti reuses these as a placeholder |
 | `slot_pitch` | 20.32mm | Sourced — Protocase ATX/PCI enclosure design guide, Fig. 9 |
 | `gpu_bracket_hole_d` | 3.5mm | Sourced size (Protocase: 2.71mm/0.1065in 6-32 tap), sized up for a plastic clearance hole — **position still a placeholder** |
-| `rack_clear_width` | 270mm | **Placeholder — measure yours**; see reasoning above |
+| `rack_clear_width` | 270mm | **Placeholder — measure yours**; the layout as sized needs 340.75mm (`required_tray_width`), 70mm more than this — blocking, see v0.6 above |
+| `psu_col_w` / `io_col_w` | 156mm / 174.75mm | Derived from real sourced PSU/IO sizes + margin — replaces the old `half_width` 50/50 split, which fit neither |
 | `psu_d` | 140mm | Estimate — verify against RM850e |
 | `tray_u_height` (requested) vs. `actual_panel_height` (used) | 8U (355.6mm) vs. ~355.6mm now (PSU/IO row height dropped once decoupled from the GPU row) | Recompute if row proportions change |
 | `hole_a`/`hole_b`/`hole_c` (EIA-310 intra-U spacing) | 6.35/15.875/25.4mm | Standard convention — not explicitly confirmed for this specific rack SKU (inferred from its 10-32 tapped + cage-nut hardware kit) |
