@@ -61,9 +61,15 @@ mobo_hole_scale_x = board_w / (atx_std_w_in * 25.4);
 mobo_hole_d = 3.2; // mm, clearance-ish; cut as small slots for tolerance, not tight holes
 
 // --- IO shield cutout (standard ATX/EATX size — sourced, genuinely universal) ---
+// io_w/io_h are the shield's own dimensions. On a normal desktop case the
+// board lies with its width axis horizontal, so io_w (158.75mm) runs
+// left-right. This build mounts the board rotated 90 degrees (confirmed
+// against docs/photos/rack-front.jpg: the USB/audio/net ports stack
+// top-to-bottom, not side-by-side) — so the cutout is rotated 90 degrees
+// too: io_h (44.45mm) is the cut's width, io_w (158.75mm) is its height.
 io_w = 158.75;
 io_h = 44.45;
-io_top_margin = 8; // PLACEHOLDER — verify against the board's actual IO offset
+io_margin = 8; // mm, margin above/below the rotated cutout within its own column — placeholder
 
 // --- PSU (Corsair RM850e — real ATX PSU mechanical spec, sourced) ---
 psu_w = 150; // mm, sourced, fixed ATX standard
@@ -86,13 +92,24 @@ gpu_card_length    = 338;
 gpu_card_height    = 140;
 gpu_card_thickness = 50;
 gpu_margin = 3;
-slot_pitch = 20.32; // mm, real standard, reference only
+slot_pitch = 20.32; // mm, sourced — Protocase ATX/PCI enclosure design guide
+                     // (Fig. 9, "PCI position pitch"), confirms this figure
+gpu_bracket_hole_d = 3.5; // mm, clearance for a 6-32 screw. Protocase's spec
+                           // gives 2.71mm (0.1065in) as the TAP drill for
+                           // cutting 6-32 threads directly into sheet metal —
+                           // sized up here for a clearance hole through
+                           // printed plastic (screw + nut or heat-set insert)
+                           // rather than tapping the plastic itself.
+gpu_shelf_depth = gpu_card_thickness + 2*gpu_margin; // real support ledge —
+                           // the card rests on this, not just on a screw
 
 // --- Derived heights ---
 psu_seg_height = psu_h + 2*psu_margin;
+io_bezel_height = io_w + 2*io_margin; // io_w is now the cutout's VERTICAL span (rotated 90deg)
+top_row_height = max(psu_seg_height, io_bezel_height);
 gpu_row_height = gpu_card_height + 2*gpu_margin;
 requested_panel_height = tray_u_height * u_pitch;
-required_panel_height  = max(psu_seg_height, io_h + io_top_margin + 20) + gpu_row_height;
+required_panel_height  = top_row_height + gpu_row_height;
 actual_panel_height = max(requested_panel_height, required_panel_height);
 
 spine_width = 10;
@@ -115,10 +132,18 @@ tray_width = rack_clear_width;
 tray_depth = rack_overall_d;
 
 module rack_ear(h) {
+    // L-bracket, not a free-standing post: a vertical leg (holes, faces the
+    // rack rail) plus a horizontal foot that overlaps the tray's edge for
+    // its full height, so the ear is volumetrically bonded to the tray
+    // instead of touching it along a single zero-area edge.
     ear_depth = 20;
+    foot_len = 12;
     n_u = ceil(h / u_pitch);
     difference() {
-        cube([ear_t, ear_depth, h]);
+        union() {
+            cube([ear_t, ear_depth, h]);
+            cube([ear_t + foot_len, wall_t, h]);
+        }
         for (u = [0 : n_u - 1]) {
             for (hh = [hole_a, hole_b, hole_c])
                 if (u*u_pitch + hh < h)
@@ -155,15 +180,18 @@ module mobo_segment() {
     //     to sit behind the PSU bracket too, not collide with it — this
     //     matches how the board's real footprint relates to what's
     //     actually visible from the front in the photo.
+    // IO cutout rotated 90deg from the shield's own w/h (see io_w/io_h
+    // comment above) — io_h is the cut's width, io_w is its height.
     io_col_x0 = tray_width - half_width;
-    io_x0 = io_col_x0 + (half_width - io_w)/2;
+    io_cut_x0 = io_col_x0 + (half_width - io_h)/2; // centered in the column
     plate_top = plate_t + actual_panel_height;
-    psu_seg_z0 = actual_panel_height - psu_seg_height;
+    io_bezel_z0 = actual_panel_height - io_bezel_height; // bezel column is flush top
+    io_cut_z0 = io_bezel_z0 + (io_bezel_height - io_w)/2; // centered in the column
 
     difference() {
-        translate([io_col_x0, 0, plate_t + psu_seg_z0]) cube([half_width, wall_t, psu_seg_height]);
-        translate([io_x0, -1, plate_top - io_h - io_top_margin])
-            cube([io_w, wall_t+2, io_h]);
+        translate([io_col_x0, 0, plate_t + io_bezel_z0]) cube([half_width, wall_t, io_bezel_height]);
+        translate([io_cut_x0, -1, plate_t + io_cut_z0])
+            cube([io_h, wall_t+2, io_w]);
     }
 
     plate_x0 = tray_width - board_w; // right-aligned; may run slightly past
@@ -211,17 +239,24 @@ module psu_segment() {
 module gpu_bracket(x0) {
     // Open bracket, full width of its half-column — card sits with slot/
     // connector down, cooler fully exposed (no blanking panel), matching
-    // the photo. Screw slots at standard expansion-slot pitch, placeholder
-    // vertical position pending dry-fit.
+    // the photo. Two guide fins, PLUS a real support shelf the card's PCB
+    // actually rests its weight on (a screw alone doesn't hold a GPU up),
+    // PLUS one real bracket screw hole per fin sized from Protocase's
+    // ATX/PCI enclosure guide (gpu_bracket_hole_d above). Shelf position
+    // along the depth and the hole's height are still placeholders — real
+    // positions need a dry-fit against the actual riser routing.
+    shelf_y0 = 20;
+    hole_y = shelf_y0 + gpu_shelf_depth/2;
+    hole_z = gpu_row_height * 0.65;
     difference() {
         union() {
             cube([wall_t, tray_depth, plate_t]);
-            translate([0, 0, 0]) cube([wall_t, tray_depth, gpu_row_height]);
+            cube([wall_t, tray_depth, gpu_row_height]);
             translate([half_width - wall_t, 0, 0]) cube([wall_t, tray_depth, gpu_row_height]);
+            translate([0, shelf_y0, 0]) cube([half_width, gpu_shelf_depth, wall_t]);
         }
-        for (i = [0:3])
-            translate([-1, 20 + i*slot_pitch, 15 + i*25])
-                rotate([0, 90, 0]) cylinder(d=4.5, h=wall_t+2);
+        translate([-1, hole_y, hole_z]) rotate([0,90,0]) cylinder(d=gpu_bracket_hole_d, h=wall_t+2);
+        translate([half_width - wall_t - 1, hole_y, hole_z]) rotate([0,90,0]) cylinder(d=gpu_bracket_hole_d, h=wall_t+2);
     }
 }
 
@@ -246,37 +281,45 @@ module rack_reference() {
     }
 }
 
+module structural_group() {
+    color("SteelBlue") {
+        base_plate();
+        translate([-ear_t, 0, plate_t]) rack_ear(actual_panel_height);
+        translate([tray_width + ear_t, 0, plate_t]) mirror([1,0,0]) rack_ear(actual_panel_height);
+        spine();
+        slide_tab(0);
+        slide_tab(tray_width - wall_t);
+    }
+}
+
+module printable_group() {
+    structural_group();
+    color("FireBrick") mobo_segment();
+    color("SeaGreen") {
+        translate([0, 0, plate_t]) gpu_bracket(0);
+        translate([half_width + spine_width, 0, plate_t]) gpu_bracket(0);
+    }
+    color("MediumPurple") psu_segment();
+}
+
 module tray() {
-    if (render_part == "all" || render_part == "structural") {
-        color("SteelBlue") {
-            base_plate();
-            translate([-ear_t, 0, plate_t]) rack_ear(actual_panel_height);
-            translate([tray_width, 0, plate_t]) rack_ear(actual_panel_height);
-            spine();
-            slide_tab(0);
-            slide_tab(tray_width - wall_t);
-        }
-    }
-    if (render_part == "all" || render_part == "mobo") {
-        color("FireBrick") mobo_segment();
-    }
+    if (render_part == "all" || render_part == "structural") structural_group();
+    if (render_part == "all" || render_part == "mobo") color("FireBrick") mobo_segment();
     if (render_part == "all" || render_part == "gpu") {
         color("SeaGreen") {
             translate([0, 0, plate_t]) gpu_bracket(0);
             translate([half_width + spine_width, 0, plate_t]) gpu_bracket(0);
         }
     }
-    if (render_part == "all" || render_part == "psu") {
-        color("MediumPurple") psu_segment();
-    }
-    if (render_part == "rack_reference" || render_part == "fit_check") {
-        rack_reference();
-    }
+    if (render_part == "all" || render_part == "psu") color("MediumPurple") psu_segment();
+    if (render_part == "rack_reference" || render_part == "fit_check") rack_reference();
     if (render_part == "fit_check") {
-        color("SteelBlue") { base_plate(); translate([-ear_t, 0, plate_t]) rack_ear(actual_panel_height); translate([tray_width, 0, plate_t]) rack_ear(actual_panel_height); spine(); slide_tab(0); slide_tab(tray_width - wall_t); }
-        color("FireBrick") mobo_segment();
-        color("SeaGreen") { translate([0, 0, plate_t]) gpu_bracket(0); translate([half_width + spine_width, 0, plate_t]) gpu_bracket(0); }
-        color("MediumPurple") psu_segment();
+        // Lifted to the rack's real first usable U so the ears' holes line
+        // up with rack_reference's holes in the render — visualization
+        // only, doesn't change the printed geometry (ear holes are cut
+        // relative to the tray's own bottom, which repeats every U_pitch
+        // so it lines up at any U row once actually installed).
+        translate([0, 0, rack_rail_end_offset]) printable_group();
     }
 }
 

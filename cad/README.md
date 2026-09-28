@@ -4,11 +4,52 @@
 matters is a named variable at the top of the file with a comment saying
 whether it's a sourced spec or a placeholder you need to verify.
 
-**Status: v0.4 draft, not print-ready.** Manifold STLs export clean
+**Status: v0.5 draft, not print-ready.** Manifold STLs export clean
 (`NoError` on the combined model and all per-part exports, including the
-new rack reference frame). Real sourced mounting holes for PSU and
-(adapted) motherboard are now cut into the geometry. Still not dry-fit
-against real hardware.
+rack reference frame). Real sourced mounting holes for PSU and (adapted)
+motherboard are cut into the geometry, the IO cutout is correctly
+oriented, the rack ears are real bonded flanges, and the GPU brackets
+have a real support shelf + sourced screw hole. Still not dry-fit against
+real hardware.
+
+## v0.5 — IO orientation fixed, real flanges, real GPU mount
+
+v0.4 still had three real defects, caught by re-checking the actual
+render (not just trusting the code) against the photo:
+
+- **IO cutout was 90&deg; wrong.** v0.4 cut it in the desktop-case
+  orientation (158.75mm wide, 44.45mm tall) — but this build mounts the
+  board rotated 90&deg;, and `docs/photos/rack-front.jpg` clearly shows
+  the USB/audio/network ports stacked top-to-bottom, not side by side.
+  Worse, at 158.75mm wide the old cutout didn't even fit inside the
+  130mm-wide bezel column — it would've overflowed sideways. Now the cut
+  is 44.45mm wide × 158.75mm tall, and the bezel column has its own
+  height (independent of the PSU row) sized to fit it.
+- **Rack ears were floating posts, not bonded flanges.** The v0.4 ear
+  touched the base plate along a single zero-area edge — geometrically
+  it exported as one manifold, but it's not a real load-bearing joint.
+  Rewrote `rack_ear()` as a proper L-bracket: a vertical leg (holes,
+  faces the rack rail) plus a horizontal foot that overlaps the tray's
+  edge for the ear's *full height*, so there's real volumetric contact.
+  Also: the `fit_check` render now lifts the tray to `rack_rail_end_offset`
+  so the ears' holes visually line up with the rack reference frame's
+  holes — v0.4 had the tray sitting at the rack's absolute floor (Z=0),
+  33mm below the first real U, which made the flanges look disconnected
+  from the rack's actual hole line even though the print geometry itself
+  was fine (U-pitch is periodic, so it lines up once actually installed —
+  but the *visualization* was misleading).
+- **GPU brackets had nothing to actually mount a card to.** v0.4's fins
+  had 4 guessed holes with no real spacing/size rationale and no
+  structure bearing the card's weight — just two open fins. Added a real
+  support shelf (`gpu_shelf_depth`) each card's PCB rests on, plus one
+  bracket screw hole per fin sized from a real source: Protocase's
+  ATX/PCI enclosure design guide gives 2.71mm (0.1065in) as the 6-32 tap
+  drill size for a PCI bracket screw hole, and separately confirms the
+  20.32mm PCI slot pitch already in this file (`slot_pitch`). Hole is
+  sized up to 3.5mm clearance since this prints in plastic (screw + nut
+  or heat-set insert, not tapped directly). Shelf/hole *position* is
+  still a placeholder pending dry-fit — the source only gives real sizes,
+  not this custom riser-mounted layout's positions.
 
 ## v0.4 — real mounting holes, rack reference frame, layout fixed from the photo
 
@@ -59,15 +100,18 @@ against real hardware.
 2. **Cross-check the adapted motherboard holes** against the existing
    acrylic plate. They're derived from a real spec but scaled for a
    different board size than the source table covers.
-3. **Verify the IO cutout position** — size (158.75×44.45mm) is a real
-   universal standard; its position on the board is still a placeholder.
+3. **Verify the IO cutout position** — size (158.75×44.45mm, now cut
+   rotated 90&deg; to match the photo) is a real universal standard; its
+   position within the bezel column is still a placeholder.
 4. **Verify the PSU holes** land correctly relative to your specific
    RM850e — the 4-hole ATX pattern is genuinely universal, but confirm
    `psu_d` (140mm, estimated) against the real unit too.
 5. **Source the 4070 Ti's real dimensions** — the GPU segment still uses
    the 5080's numbers (338×140×50mm) for both cutouts.
-6. **Dry-fit the GPU bracket** slot positions — still a placeholder
-   fixture, not measured against real riser routing.
+6. **Dry-fit the GPU bracket** shelf position and screw hole height —
+   the shelf/hole *sizes* are sourced (see below), their *position*
+   along the tray depth and row height is still a placeholder fixture,
+   not measured against real riser routing.
 7. **Confirm slide hardware and `slide_hole_pitch`.**
 8. **Resolve the 8U vs. ~384mm gap** (see below) before committing to ear
    height.
@@ -83,6 +127,8 @@ against real hardware.
 | `psu_holes` (4-hole PSU pattern) | see table in .scad | Sourced (Intel ATX 2.01 Fig. 9) — genuinely universal, high confidence |
 | `io_w` / `io_h` | 158.75 × 44.45mm | Sourced — standard ATX/EATX IO shield opening |
 | `gpu_card_length/height/thickness` | 338 × 140 × 50mm | Sourced for the **5080 only** — 4070 Ti reuses these as a placeholder |
+| `slot_pitch` | 20.32mm | Sourced — Protocase ATX/PCI enclosure design guide, Fig. 9 |
+| `gpu_bracket_hole_d` | 3.5mm | Sourced size (Protocase: 2.71mm/0.1065in 6-32 tap), sized up for a plastic clearance hole — **position still a placeholder** |
 | `rack_clear_width` | 270mm | **Placeholder — measure yours**; see reasoning above |
 | `psu_d` | 140mm | Estimate — verify against RM850e |
 | `tray_u_height` (requested) vs. `actual_panel_height` (used) | 8U (355.6mm) vs. ~355.6mm now (PSU/IO row height dropped once decoupled from the GPU row) | Recompute if row proportions change |

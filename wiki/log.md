@@ -52,3 +52,23 @@ fixed a bug where the mobo panel was sized to a 130mm half-column but
 the holes were computed for the real 277mm board, landing most holes
 outside the visible panel - split into a front IO bezel + full-width
 standoff plate set back in depth.
+
+
+## [2026-09-28] ingest | Slide-out Tray CAD v0.5
+Called out for three defects still present in v0.4's actual render, not
+caught before shipping it. (1) IO cutout was cut in desktop-case
+orientation (158.75mm wide) and didn't fit its own 130mm bezel column -
+re-checked the photo, ports stack vertically, rotated the cutout 90deg
+and gave the bezel its own column height. (2) Rack ears touched the base
+plate along a single zero-area edge, not a real bonded joint - rebuilt
+rack_ear() as an L-bracket with a foot overlapping the tray's full
+height, and fixed the fit_check render sitting 33mm below the rack's
+real first U (rack_rail_end_offset), which made the flanges look
+disconnected from the rack's hole line in the visualization even though
+the print geometry itself was periodic-correct. (3) GPU brackets had no
+real mounting structure - added a support shelf the card's PCB rests on
+plus a bracket screw hole sized from Protocase's ATX/PCI enclosure
+design guide (2.71mm/0.1065in 6-32 tap, sized up to 3.5mm clearance for
+plastic), which also independently confirmed the 20.32mm slot_pitch
+already in the file. Re-exported all STLs (still NoError/manifold),
+republished the viewer (v6).
