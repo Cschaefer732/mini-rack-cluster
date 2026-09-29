@@ -1,3 +1,10 @@
+> **SUPERSEDED 2026-09-29.** Everything below is the OpenSCAD v0.1-0.6 history. Those versions
+> modelled the motherboard as a plate facing the front; it stands edge-on with its IO edge to the
+> front (measured from the build photo). The current design is [`tray-v1/`](tray-v1/README.md),
+> built and audited from [`asset-forge/3d-design`](https://github.com/Cschaefer732/asset-forge/tree/main/3d-design).
+> Also wrong in the files below: the EIA-310 hole pattern, the board dimensions (304.8 mm is the
+> IO edge), and the ATX hole table.
+
 # CAD — mobo/GPU/PSU slide-out tray
 
 `mobo-gpu-psu-tray.scad` — parametric OpenSCAD model. Every dimension that

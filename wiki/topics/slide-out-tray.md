@@ -1,28 +1,21 @@
 ---
 type: topic
-updated: 2026-09-28
-sources: [cad/mobo-gpu-psu-tray.scad, cad/README.md, docs/photos/rack-front.jpg]
+updated: 2026-09-29
+sources: [cad/tray-v1/README.md, cad/tray-v1/report.json, docs/photos/rack-front.jpg]
 ---
 
 # Slide-out Mobo/GPU/PSU Tray
 
-v0.6 parametric OpenSCAD draft (`cad/mobo-gpu-psu-tray.scad`). Layout
-verified against the actual build photo, not guessed: PSU top-left (open
-bracket, exposed face), motherboard IO shield top-right (standard,
-unrotated orientation — v0.5's 90&deg; rotation was based on misreading a
-normal multi-row USB layout as a rotated shield), two GPUs full-width
-below (open brackets, coolers exposed, slot-down, real support shelf +
-sourced screw hole each), center spine, outer mounting flanges (bonded
-L-brackets). Real sourced mounting holes for the PSU (genuinely universal
-4-hole ATX pattern) and an adapted version of the real 9-hole ATX
-standoff pattern for the motherboard (scaled for the X670E ACE's
-non-standard width — not verified against MSI's own drawing). Column
-widths are now derived from each component's real size instead of an
-assumed 50/50 split — which surfaced a genuine, unresolved conflict:
-the PSU and IO shield need ~341mm side by side, the rack is an assumed
-270mm. A reference rack frame, modeled at the Tecmojo 12U rack's real
-sourced dimensions, makes this visible in the render instead of hiding
-it.
+**Current: v1.0, rebuilt from zero** (`cad/tray-v1/`; source and audit in `asset-forge/3d-design/assets/rack-tray/`).
+An 8U, 10-inch faceplate with corrected EIA-310 ear holes and a printed chassis behind it. The
+board stands edge-on like in a PC tower: IO edge to the front, portrait IO window, a printed frame
+carrying the ten ATX standoff holes, hanging out the back. PSU top-left on a shelf with four
+screw holes and a window; two GPUs bottom-left, fingers down, bracket ports through windows, tab
+screws to a ledge. 280 numeric checks pass, nine deliberate sabotages of the builder are each
+caught. Still needs: a measured rack opening (222.25 mm assumed), slide hardware, PSU depth and
+screw-pattern handedness, GPU B dimensions, a dry fit. See [[fleet-nodes]] for the components.
+
+The OpenSCAD v0.1-0.6 below are kept as history only.
 
 ## History
 
@@ -86,3 +79,14 @@ Full sourced-vs-placeholder table: `cad/README.md`.
 
 - [[fleet-nodes]]
 - [[rack-enclosure]]
+- v1.0 (2026-09-29): scrapped and rebuilt with a verification-first workflow after being told the
+  design was wrong. Root cause of everything before: the photo was read, not measured. The IO strip
+  in the photo measures ~59 x 152 mm next to a PSU face of known 150 x 86 mm, which puts the board
+  edge-on with a portrait shield; every earlier version modelled a flat plate facing the front, so
+  each "fix" (rotate the cutout, split the columns, add a spine) patched a wrong model. v0.6's
+  341 mm-versus-270 mm "width conflict" was an artifact of that misreading. Also wrong before and
+  fixed now: EIA-310 hole positions (6.35 / 22.225 / 38.1 mm, not 6.35 / 15.875 / 25.4), the board
+  axes (304.8 mm is the IO edge, 277 the depth) so the scaled "adapted" ATX hole table was
+  invalid, and the ATX hole table itself (10 holes, read from the Protocase drawing at 300 dpi).
+  The new checker's first run caught two more of my mistakes before printing: two bolts landing in a
+  lightening cut-out and a cutter nicking a plate by 1 mm.

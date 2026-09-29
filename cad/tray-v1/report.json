@@ -1,0 +1,1970 @@
+{
+ "counts": {
+  "PASS": 280,
+  "FAIL": 0,
+  "INCONCLUSIVE": 0
+ },
+ "exit_code": 0,
+ "results": [
+  {
+   "name": "faceplate: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: positive volume",
+   "status": "PASS",
+   "detail": "249662.2 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: 1 body",
+   "status": "PASS",
+   "detail": "1 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: bounding box",
+   "status": "PASS",
+   "detail": "bounds [-15.88, -0.0, 0.0]..[238.12, 12.0, 354.8], worst error 0.000 mm",
+   "measured": 1.2207031261368684e-05,
+   "expected": 0.0
+  },
+  {
+   "name": "faceplate: delivered mesh vs B-rep: volume balance",
+   "status": "PASS",
+   "detail": "249662.2 vs expected 249659.6 mm3 (diff +2.6, tol 126.82977954587447)",
+   "measured": 249662.19756242938,
+   "expected": 249659.55909174893
+  },
+  {
+   "name": "faceplate: intent: volume balance",
+   "status": "PASS",
+   "detail": "249659.6 vs expected 249659.6 mm3 (diff +0.0, tol 1.0)",
+   "measured": 249659.55909174893,
+   "expected": 249659.5590917484
+  },
+  {
+   "name": "faceplate: ear hole L0.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 5.949999999999999) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L0.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 21.825000000000003) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L0.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 37.7) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L1.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 50.400000000000006) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L1.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 66.275) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L1.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 82.15) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L2.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 94.85) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L2.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 110.725) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L2.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 126.6) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L3.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 139.3) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L3.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 155.175) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L3.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 171.05) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L4.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 183.75) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L4.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 199.625) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L4.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 215.5) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L5.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 228.2) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L5.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 244.075) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L5.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 259.95000000000005) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L6.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 272.6500000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L6.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 288.5250000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L6.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 304.4000000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L7.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 317.1000000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L7.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 332.9750000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole L7.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (-7.137500000000003, 348.8500000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R0.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 5.949999999999999) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R0.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 21.825000000000003) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R0.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 37.7) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R1.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 50.400000000000006) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R1.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 66.275) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R1.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 82.15) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R2.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 94.85) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R2.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 110.725) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R2.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 126.6) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R3.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 139.3) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R3.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 155.175) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R3.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 171.05) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R4.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 183.75) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R4.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 199.625) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R4.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 215.5) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R5.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 228.2) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R5.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 244.075) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R5.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 259.95000000000005) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R6.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 272.6500000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R6.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 288.5250000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R6.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 304.4000000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R7.0",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 317.1000000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R7.1",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 332.9750000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: ear hole R7.2",
+   "status": "PASS",
+   "detail": "hole d=6.0 at (229.3875, 348.8500000000001) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: PSU screw 0",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (10.0, 275.8) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: PSU screw 1",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (10.0, 339.8) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: PSU screw 2",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (148.0, 333.8) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: PSU screw 3",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (124.0, 265.8) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: GPU A tab screw",
+   "status": "PASS",
+   "detail": "hole d=3.5 at (31.0, 8.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: GPU B tab screw",
+   "status": "PASS",
+   "detail": "hole d=3.5 at (90.0, 8.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-base bolt @(30.0, 13.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (30.0, 13.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-base bolt @(90.0, 13.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (90.0, 13.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-base bolt @(190.0, 13.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (190.0, 13.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-base bolt @(210.0, 13.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (210.0, 13.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-shelf bolt @(50.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (50.0, 245.8) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-shelf bolt @(110.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (110.0, 245.8) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-frame bolt @(160.0, 40.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (160.0, 40.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-frame bolt @(160.0, 130.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (160.0, 130.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-frame bolt @(160.0, 220.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (160.0, 220.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: faceplate-frame bolt @(160.0, 310.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (160.0, 310.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: PSU window",
+   "status": "PASS",
+   "detail": "window 126.0x62.0 at (79.0, 302.8) along y: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: IO shield window",
+   "status": "PASS",
+   "detail": "window 45.44999999999999x159.81 at (189.525, 257.96500000000003) along y: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: GPU A window",
+   "status": "PASS",
+   "detail": "window 48.0x122.01999999999998 at (31.0, 82.00999999999999) along y: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "faceplate: GPU B window",
+   "status": "PASS",
+   "detail": "window 54.0x122.01999999999998 at (90.0, 82.00999999999999) along y: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: positive volume",
+   "status": "PASS",
+   "detail": "309271.9 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: 1 body",
+   "status": "PASS",
+   "detail": "1 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: bounding box",
+   "status": "PASS",
+   "detail": "bounds [0.0, 4.0, 0.0]..[222.25, 240.0, 20.0], worst error 0.000 mm",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "base: delivered mesh vs B-rep: volume balance",
+   "status": "PASS",
+   "detail": "309271.9 vs expected 309271.1 mm3 (diff +0.9, tol 156.63552575474222)",
+   "measured": 309271.9397822553,
+   "expected": 309271.0515094844
+  },
+  {
+   "name": "base: intent: volume balance",
+   "status": "PASS",
+   "detail": "309271.1 vs expected 309271.1 mm3 (diff +0.0, tol 1.0)",
+   "measured": 309271.0515094844,
+   "expected": 309271.0515094842
+  },
+  {
+   "name": "base: slide hole (12,60)",
+   "status": "PASS",
+   "detail": "hole d=5.5 at (12.0, 60.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: slide hole (12,92)",
+   "status": "PASS",
+   "detail": "hole d=5.5 at (12.0, 92.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: slide hole (12,156)",
+   "status": "PASS",
+   "detail": "hole d=5.5 at (12.0, 156.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: slide hole (12,188)",
+   "status": "PASS",
+   "detail": "hole d=5.5 at (12.0, 188.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: slide hole (210,60)",
+   "status": "PASS",
+   "detail": "hole d=5.5 at (210.0, 60.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: slide hole (210,92)",
+   "status": "PASS",
+   "detail": "hole d=5.5 at (210.0, 92.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: slide hole (210,156)",
+   "status": "PASS",
+   "detail": "hole d=5.5 at (210.0, 156.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: slide hole (210,188)",
+   "status": "PASS",
+   "detail": "hole d=5.5 at (210.0, 188.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: faceplate-base bolt @(30.0, 13.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (30.0, 13.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: faceplate-base bolt @(90.0, 13.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (90.0, 13.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: faceplate-base bolt @(190.0, 13.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (190.0, 13.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: faceplate-base bolt @(210.0, 13.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (210.0, 13.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: base-frame bolt @(150.0, 45.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (150.0, 45.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: base-frame bolt @(150.0, 205.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (150.0, 205.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: base-frame bolt @(170.0, 45.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (170.0, 45.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: base-frame bolt @(170.0, 205.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (170.0, 205.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: base-wall bolt @(10.5, 40.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (10.5, 40.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: base-wall bolt @(10.5, 120.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (10.5, 120.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: base-wall bolt @(10.5, 200.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (10.5, 200.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: riser slot A",
+   "status": "PASS",
+   "detail": "window 12.0x100.0 at (31.0, 64.0) along z: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: riser slot B",
+   "status": "PASS",
+   "detail": "window 12.0x100.0 at (90.0, 64.0) along z: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: positive volume",
+   "status": "PASS",
+   "detail": "191107.2 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: 1 body",
+   "status": "PASS",
+   "detail": "1 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: bounding box",
+   "status": "PASS",
+   "detail": "bounds [-0.0, 4.0, 6.0]..[18.0, 236.0, 275.8], worst error 0.000 mm",
+   "measured": 1.2207031261368684e-05,
+   "expected": 0.0
+  },
+  {
+   "name": "left_wall: delivered mesh vs B-rep: volume balance",
+   "status": "PASS",
+   "detail": "191107.2 vs expected 191107.1 mm3 (diff +0.1, tol 97.55355222400966)",
+   "measured": 191107.2093257514,
+   "expected": 191107.10444801932
+  },
+  {
+   "name": "left_wall: intent: volume balance",
+   "status": "PASS",
+   "detail": "191107.1 vs expected 191107.1 mm3 (diff +0.0, tol 1.0)",
+   "measured": 191107.10444801932,
+   "expected": 191107.10444801924
+  },
+  {
+   "name": "left_wall: base-wall bolt @(10.5, 40.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (10.5, 40.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: base-wall bolt @(10.5, 120.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (10.5, 120.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: base-wall bolt @(10.5, 200.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (10.5, 200.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: wall-shelf bolt @(60.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (60.0, 245.8) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: wall-shelf bolt @(120.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (120.0, 245.8) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: positive volume",
+   "status": "PASS",
+   "detail": "138354.0 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: 1 body",
+   "status": "PASS",
+   "detail": "1 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: bounding box",
+   "status": "PASS",
+   "detail": "bounds [3.0, 4.0, 235.8]..[156.0, 174.0, 275.8], worst error 0.000 mm",
+   "measured": 1.2207031261368684e-05,
+   "expected": 0.0
+  },
+  {
+   "name": "psu_shelf: delivered mesh vs B-rep: volume balance",
+   "status": "PASS",
+   "detail": "138354.0 vs expected 138354.3 mm3 (diff -0.2, tol 71.17712568179275)",
+   "measured": 138354.03197035953,
+   "expected": 138354.2513635855
+  },
+  {
+   "name": "psu_shelf: intent: volume balance",
+   "status": "PASS",
+   "detail": "138354.3 vs expected 138354.3 mm3 (diff +0.0, tol 1.0)",
+   "measured": 138354.2513635855,
+   "expected": 138354.2513635855
+  },
+  {
+   "name": "psu_shelf: faceplate-shelf bolt @(50.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (50.0, 245.8) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: faceplate-shelf bolt @(110.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (110.0, 245.8) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: wall-shelf bolt @(60.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (60.0, 245.8) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: shelf-frame bolt @(60.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (60.0, 245.8) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: wall-shelf bolt @(120.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (120.0, 245.8) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: shelf-frame bolt @(120.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (120.0, 245.8) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: positive volume",
+   "status": "PASS",
+   "detail": "240331.5 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: 1 body",
+   "status": "PASS",
+   "detail": "1 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: bounding box",
+   "status": "PASS",
+   "detail": "bounds [144.0, 4.0, 6.0]..[176.0, 252.0, 337.0], worst error 0.000 mm",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "board_frame: delivered mesh vs B-rep: volume balance",
+   "status": "PASS",
+   "detail": "240331.5 vs expected 240331.0 mm3 (diff +0.5, tol 122.16548412531263)",
+   "measured": 240331.4675206157,
+   "expected": 240330.96825062524
+  },
+  {
+   "name": "board_frame: intent: volume balance",
+   "status": "PASS",
+   "detail": "240331.0 vs expected 240331.0 mm3 (diff +0.0, tol 1.0)",
+   "measured": 240330.96825062524,
+   "expected": 240330.96825062478
+  },
+  {
+   "name": "frame: standoff 0",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (15.81, 46.510000000000005) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: standoff 1",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (15.81, 125.25) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: standoff 2",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (15.81, 170.97) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: standoff 3",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (38.67, 328.45) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: standoff 4",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (170.75, 46.510000000000005) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: standoff 5",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (170.75, 170.97) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: standoff 6",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (170.75, 328.45) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: standoff 7",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (243.14000000000001, 46.510000000000005) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: standoff 8",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (243.14000000000001, 170.97) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: standoff 9",
+   "status": "PASS",
+   "detail": "hole d=4.2 at (243.14000000000001, 328.45) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: faceplate-frame bolt @(160.0, 40.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (160.0, 40.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: faceplate-frame bolt @(160.0, 130.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (160.0, 130.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: faceplate-frame bolt @(160.0, 220.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (160.0, 220.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: faceplate-frame bolt @(160.0, 310.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (160.0, 310.0) along y: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: base-frame bolt @(150.0, 45.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (150.0, 45.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: base-frame bolt @(150.0, 205.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (150.0, 205.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: base-frame bolt @(170.0, 45.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (170.0, 45.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: base-frame bolt @(170.0, 205.0)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (170.0, 205.0) along z: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: shelf-frame bolt @(60.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (60.0, 245.8) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: shelf-frame bolt @(120.0, 245.8)",
+   "status": "PASS",
+   "detail": "hole d=4.4 at (120.0, 245.8) along x: 27 void + 48 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: lightening 1",
+   "status": "PASS",
+   "detail": "window 95.0x90.0 at (102.5, 105.0) along x: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: lightening 2a",
+   "status": "PASS",
+   "detail": "window 95.0x38.0 at (102.5, 209.0) along x: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: lightening 2b",
+   "status": "PASS",
+   "detail": "window 95.0x51.0 at (102.5, 289.5) along x: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: lightening 3",
+   "status": "PASS",
+   "detail": "window 42.0x100.0 at (211.0, 110.0) along x: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "frame: lightening 4",
+   "status": "PASS",
+   "detail": "window 42.0x125.0 at (211.0, 252.5) along x: 84 void + 84 solid probes agree",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_psu: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_psu: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_psu: positive volume",
+   "status": "PASS",
+   "detail": "2064000.0 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_psu: 1 body",
+   "status": "PASS",
+   "detail": "1 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_board: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_board: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_board: positive volume",
+   "status": "PASS",
+   "detail": "4366698.7 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_board: 1 body",
+   "status": "PASS",
+   "detail": "1 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_io_opening: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_io_opening: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_io_opening: positive volume",
+   "status": "PASS",
+   "detail": "28236.4 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_io_opening: 1 body",
+   "status": "PASS",
+   "detail": "1 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_gpu_a: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_gpu_a: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_gpu_a: positive volume",
+   "status": "PASS",
+   "detail": "2277503.9 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_gpu_a: 2 body",
+   "status": "PASS",
+   "detail": "2 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_gpu_b: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_gpu_b: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_gpu_b: positive volume",
+   "status": "PASS",
+   "detail": "2543027.0 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_gpu_b: 2 body",
+   "status": "PASS",
+   "detail": "2 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_standoffs: watertight",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_standoffs: winding consistent",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_standoffs: positive volume",
+   "status": "PASS",
+   "detail": "1870.4 mm3",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "ref_standoffs: 10 body",
+   "status": "PASS",
+   "detail": "10 connected bodies",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "interference: faceplate / base",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 9.161768566023909e-14,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: faceplate / left_wall",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: faceplate / psu_shelf",
+   "status": "PASS",
+   "detail": "overlap -0.00 mm3",
+   "measured": -2.539982113525241e-14,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: faceplate / board_frame",
+   "status": "PASS",
+   "detail": "overlap -0.00 mm3",
+   "measured": -1.7076791256925802e-15,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: base / left_wall",
+   "status": "PASS",
+   "detail": "overlap -0.00 mm3",
+   "measured": -3.9603086435247015e-14,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: base / psu_shelf",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: base / board_frame",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 1.0136769895696673e-13,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: left_wall / psu_shelf",
+   "status": "PASS",
+   "detail": "overlap -0.00 mm3",
+   "measured": -6.132480082825329e-14,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: left_wall / board_frame",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: psu_shelf / board_frame",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 5.603681091671526e-12,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: faceplate / ref_psu",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 1.640944324865501e-13,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: faceplate / ref_board",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: faceplate / ref_io_opening",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: faceplate / ref_gpu_a",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 1.3115897257165443e-13,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: faceplate / ref_gpu_b",
+   "status": "PASS",
+   "detail": "overlap -0.00 mm3",
+   "measured": -2.0156099012069717e-13,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: faceplate / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: base / ref_psu",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: base / ref_board",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: base / ref_io_opening",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: base / ref_gpu_a",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: base / ref_gpu_b",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: base / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: left_wall / ref_psu",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: left_wall / ref_board",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: left_wall / ref_io_opening",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: left_wall / ref_gpu_a",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: left_wall / ref_gpu_b",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: left_wall / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: psu_shelf / ref_psu",
+   "status": "PASS",
+   "detail": "overlap -0.00 mm3",
+   "measured": -2.9103830456733704e-11,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: psu_shelf / ref_board",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: psu_shelf / ref_io_opening",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: psu_shelf / ref_gpu_a",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: psu_shelf / ref_gpu_b",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: psu_shelf / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: board_frame / ref_psu",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: board_frame / ref_board",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: board_frame / ref_io_opening",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: board_frame / ref_gpu_a",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: board_frame / ref_gpu_b",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: board_frame / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 1.3277139804257487e-15,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_psu / ref_board",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_psu / ref_io_opening",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_psu / ref_gpu_a",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_psu / ref_gpu_b",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_psu / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_board / ref_io_opening",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_board / ref_gpu_a",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_board / ref_gpu_b",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_board / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap -0.00 mm3",
+   "measured": -1.8477927521409754e-13,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_io_opening / ref_gpu_a",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_io_opening / ref_gpu_b",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_io_opening / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_gpu_a / ref_gpu_b",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_gpu_a / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "interference: ref_gpu_b / ref_standoffs",
+   "status": "PASS",
+   "detail": "overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "envelope: base: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: left_wall: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: psu_shelf: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: board_frame: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: faceplate: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: ref_psu: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: ref_board: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: ref_io_opening: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: ref_gpu_a: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: ref_gpu_b: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "envelope: ref_standoffs: inside envelope",
+   "status": "PASS",
+   "detail": "",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "clearance: ref_psu / board_frame",
+   "status": "PASS",
+   "detail": "min gap 0.500 mm (need >= 0.4)",
+   "measured": 0.5,
+   "expected": 0.4
+  },
+  {
+   "name": "clearance: ref_psu / left_wall",
+   "status": "PASS",
+   "detail": "min gap 1.000 mm (need >= 0.9)",
+   "measured": 1.0,
+   "expected": 0.9
+  },
+  {
+   "name": "clearance: ref_gpu_a / left_wall",
+   "status": "PASS",
+   "detail": "min gap 3.000 mm (need >= 2.5)",
+   "measured": 3.0,
+   "expected": 2.5
+  },
+  {
+   "name": "clearance: ref_gpu_a / ref_gpu_b",
+   "status": "PASS",
+   "detail": "min gap 6.000 mm (need >= 5.0)",
+   "measured": 6.0,
+   "expected": 5.0
+  },
+  {
+   "name": "clearance: ref_gpu_a / base",
+   "status": "PASS",
+   "detail": "min gap 3.202 mm (need >= 3.0)",
+   "measured": 3.2015621187164243,
+   "expected": 3.0
+  },
+  {
+   "name": "clearance: ref_gpu_b / base",
+   "status": "PASS",
+   "detail": "min gap 3.202 mm (need >= 3.0)",
+   "measured": 3.2015621187164243,
+   "expected": 3.0
+  },
+  {
+   "name": "clearance: ref_board / faceplate",
+   "status": "PASS",
+   "detail": "min gap 1.650 mm (need >= 1.0)",
+   "measured": 1.6500000953674316,
+   "expected": 1.0
+  },
+  {
+   "name": "clearance: ref_board / board_frame",
+   "status": "PASS",
+   "detail": "min gap 4.530 mm (need >= 4.0)",
+   "measured": 4.529998779296875,
+   "expected": 4.0
+  },
+  {
+   "name": "clearance: ref_io_opening / faceplate",
+   "status": "PASS",
+   "detail": "min gap 0.500 mm (need >= 0.4)",
+   "measured": 0.5,
+   "expected": 0.4
+  },
+  {
+   "name": "clearance: ref_gpu_a / psu_shelf",
+   "status": "PASS",
+   "detail": "min gap 71.800 mm (need >= 60.0)",
+   "measured": 71.80000305175781,
+   "expected": 60.0
+  },
+  {
+   "name": "clearance: ref_gpu_b / psu_shelf",
+   "status": "PASS",
+   "detail": "min gap 71.911 mm (need >= 60.0)",
+   "measured": 71.91133734142643,
+   "expected": 60.0
+  },
+  {
+   "name": "contact: faceplate / base",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: faceplate / psu_shelf",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap -0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: faceplate / board_frame",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap -0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: faceplate / left_wall",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: base / board_frame",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: base / left_wall",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap -0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: left_wall / psu_shelf",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap -0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: psu_shelf / board_frame",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: ref_psu / psu_shelf",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: ref_psu / faceplate",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: ref_standoffs / board_frame",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap -0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: ref_standoffs / ref_board",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: ref_gpu_a / faceplate",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "contact: ref_gpu_b / faceplate",
+   "status": "PASS",
+   "detail": "gap 0.000 mm, overlap 0.00 mm3",
+   "measured": 0.0,
+   "expected": 0.0
+  },
+  {
+   "name": "faceplate: fits print bed",
+   "status": "PASS",
+   "detail": "part 354.8 x 254.0 x 12.0 vs usable 356 x 356, z<=300.0",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "base: fits print bed",
+   "status": "PASS",
+   "detail": "part 236.0 x 222.2 x 20.0 vs usable 356 x 356, z<=300.0",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "left_wall: fits print bed",
+   "status": "PASS",
+   "detail": "part 269.8 x 232.0 x 18.0 vs usable 356 x 356, z<=300.0",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "psu_shelf: fits print bed",
+   "status": "PASS",
+   "detail": "part 170.0 x 153.0 x 40.0 vs usable 356 x 356, z<=300.0",
+   "measured": null,
+   "expected": null
+  },
+  {
+   "name": "board_frame: fits print bed",
+   "status": "PASS",
+   "detail": "part 331.0 x 248.0 x 32.0 vs usable 356 x 356, z<=300.0",
+   "measured": null,
+   "expected": null
+  }
+ ]
+}

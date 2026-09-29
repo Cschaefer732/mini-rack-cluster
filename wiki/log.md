@@ -98,3 +98,12 @@ overhanging the rack posts. This is now the real blocker - needs an
 actual rack measurement and a straight-on (not 3/4 angle) photo to
 confirm PSU and mobo genuinely share one depth plane. Re-exported all
 STLs (NoError/manifold), republished viewer (v7).
+
+## [2026-09-29] ingest | Slide-out Tray v1.0 (rebuilt from zero)
+Scrapped OpenSCAD v0.1-0.6. New design built in build123d in asset-forge/3d-design with a fail-closed
+mesh audit: board edge-on (IO edge to the front, portrait IO window), 10-inch 8U faceplate with
+corrected EIA-310 holes, ATX hole table re-read from the drawing, board axes corrected. 280 checks
+pass; 9 builder-sabotage mutants fail the real spec. Outputs in cad/tray-v1/. Open: rack opening,
+slide hardware, PSU depth and screw chirality, GPU B dimensions, dry fit. The 341 mm width
+conflict recorded under v0.6 was caused by the wrong 3D reading and no longer applies.
+

@@ -75,7 +75,7 @@ outpaced normal depreciation on every reused part.
 ```
 docs/           build write-ups, LinkedIn post draft, photos
 configs/        network device summaries (port maps, gateway notes — no raw exports)
-cad/            parametric OpenSCAD model for the slide-out mobo/GPU/PSU tray
+cad/            slide-out mobo/GPU/PSU tray: tray-v1/ (current, from asset-forge/3d-design) + OpenSCAD v0.1-0.6 history
 scripts/        automation — TODO, none written yet
 wiki/           Obsidian-compatible knowledge layer for this project
 ```
@@ -85,6 +85,6 @@ wiki/           Obsidian-compatible knowledge layer for this project
 - [x] Physical build complete
 - [x] Parts + pricing documented
 - [x] Build photos added (`docs/photos/`)
-- [ ] Slide-out mobo/GPU/PSU tray — v0.6 CAD draft in `cad/`, **blocked**: PSU+IO shield need ~341mm side by side, assumed rack width is only 270mm — needs a real rack measurement + straight-on photo before the floorplan can be trusted
+- [ ] Slide-out mobo/GPU/PSU tray — v1.0 rebuilt from zero in `cad/tray-v1/` (edge-on board, 10-inch 8U faceplate, 280 audit checks pass, 9 sabotage mutants caught); needs a measured rack opening, slide hardware, and a dry fit before printing
 - [ ] Rack elevation / wiring diagram
 - [ ] `scripts/` — no automation defined yet
